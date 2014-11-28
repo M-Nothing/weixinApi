@@ -3,6 +3,8 @@
     <head>
         <title>微信Js API Demo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="dns-prefetch" href="http://mmbiz.qpic.cn">
+        <link rel="dns-prefetch" href="http://res.wx.qq.com">
         <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0;">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -12,10 +14,10 @@
                 padding: 5px 10px;
             }
         </style>
-        <script type="text/javascript" src="weixinApi.js"></script>
+        <script type="text/javascript" src="WeixinApi.js"></script>
     </head>
     <body>
-        <p id="alert">这是一个测试页面！请直接分享到微信好友、朋友圈、腾讯微博看效果吧！</p>
+        <p>这是一个测试页面！请直接分享到微信好友、朋友圈、腾讯微博看效果吧！</p>
         <p>如果你是扫一扫过来的，可以复制连接，然后发给任何一个微信好友，再点击连接进入测试</p>
         <p>
             <button id="optionMenu">WeixinApi.hideOptionMenu</button>
@@ -35,6 +37,10 @@
 
         <p>
             <button id="getInstallState">WeixinApi.getInstallState</button>
+        </p>
+
+        <p>
+            <button id="sendEmail">WeixinApi.sendEmail</button>
         </p>
 
         <p>
@@ -116,6 +122,13 @@
                     }
                 })
             });
+            // 发送邮件
+            addEvent("sendEmail", function(el, e) {
+                WeixinApi.sendEmail({
+                    subject : 'Hello world！',
+                    body : '这是一封测试邮件，Demo而已，慢慢玩儿吧！'
+                });
+            });
             // 刷新
             addEvent('refresh',function(el,e){
                 e.preventDefault();
@@ -133,6 +146,8 @@
                 };
                 // 分享的回调
                 var wxCallbacks = {
+                    // 收藏操作是否触发回调，默认是开启的
+                    favorite : false,
                     // 分享操作开始之前
                     ready : function() {
                         // 你可以在这里对分享的数据进行重组
