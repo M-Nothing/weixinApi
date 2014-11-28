@@ -318,7 +318,6 @@
      * 隐藏底部工具栏
      */
     WeixinApi.hideToolbar = function () {
-        alert("called");
         WeixinJSBridge.call('hideToolbar');
     };
 
@@ -380,7 +379,6 @@
         if (readyCallback && typeof readyCallback == 'function') {
             var Api = this;
             var wxReadyFunc = function () {
-                alert("ready");
                 readyCallback(Api);
             };
             if (typeof window.WeixinJSBridge == "undefined") {
