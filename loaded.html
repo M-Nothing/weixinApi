@@ -15,29 +15,13 @@
         <script type="text/javascript" src="weixinApi.js"></script>
     </head>
     <body>
-        <p id="alert">这是一个测试页面！请直接分享到微信好友、朋友圈、腾讯微博看效果吧！</p>
-        <p>大约1000ms,api完成事件绑定</p>
-        <p>
-            <button id="optionMenu">WeixinApi.hideOptionMenu</button>
-        </p>
+        <p>隐藏opiont menu</p>
         
         <script type="text/javascript">
-            var num = 0;
-            var getWeixinApi = null;
-            var obj = document.getElementById("alert");
-            window.onload = function(){
-                if( WeixinApi.openInWeixin() ){
-                    getWeixinApi = window.setInterval(function(){
-                        if( typeof window.WeixinJSBridge != "undefined"){
-                            WeixinApi.hideOptionMenu();
-                            window.clearInterval(getWeixinApi);
-                        }else{
-                            obj.innerHTML = num++;
-                        }
-                    }, 100);
-                }
-            };
-
+            WeixinApi.ready(function(Api) {
+                // 隐藏
+                Api.hideOptionMenu();
+            });
             
         </script>
     </body>
